@@ -24,6 +24,6 @@ jobs:
         uses: tyankatsu0105/read-package-version-actions@v1
         id: package-version
       - name: Validate semantic versionning
-        uses: matdurand/conventional-version-bump-check@v2
+        uses: matdurand/conventional-version-bump-check@v3
         with:
           current-version: ${{ steps.package-version.outputs.version }}
