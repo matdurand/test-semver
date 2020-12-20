@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - feature/*
+      - feat/*
+      - hotfix/*
+      - fix/*
+      - bug/*
+      - chore/*
+      - doc/*
+      - documentation/*
+      - test/*
+    
+jobs:
+  conventional-commit-check-bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Read package.json
+        uses: tyankatsu0105/read-package-version-actions@v1
+        id: package-version
+      - name: Validate semantic versionning
+        uses: matdurand/conventional-version-bump-check@v1
+        with:
+          current-version: ${{ steps.package-version.outputs.version }}
